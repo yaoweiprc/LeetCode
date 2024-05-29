@@ -19,3 +19,34 @@ var findDuplicate = function(nums) {
     }
     return slow;
 };
+
+// https://leetcode.com/problems/find-the-duplicate-number/solutions/1892921/9-approaches-count-hash-in-place-marked-sort-binary-search-bit-mask-fast-slow-pointers
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findDuplicate = function(nums) {
+    const n = nums.length - 1;
+    let low = 1;
+    let high = n;
+    while (low < high) {
+        const mid = low + Math.floor((high - low) / 2);
+        const count = getCountLessThanOrEqualToX(mid);
+        if (count <= mid) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    return high;
+
+    function getCountLessThanOrEqualToX(x) {
+        let count = 0;
+        for (let num of nums) {
+            if (num <= x)
+                count++;
+        }
+        return count;
+    }
+}
