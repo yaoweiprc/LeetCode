@@ -13,7 +13,7 @@ function isMatch(txt, reStr) {
         memo[i] = new Array(reLength + 1);
         memo[i][reLength] = false;
     }
-    memo[txtLength][reLength] = true;0
+    memo[txtLength][reLength] = true;
     for (let i = txtLength; i >= 0; i--) {
         for (let j = reLength - 1; j >= 0; j--) {
             const currReChar = reStr[j];
